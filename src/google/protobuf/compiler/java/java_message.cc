@@ -767,8 +767,10 @@ void MessageGenerator::GenerateCommonBuilderMethods(io::Printer* printer) {
     "classname", ClassName(descriptor_));
 
   if (HasDescriptorMethods(descriptor_)) {
+    // kevinh fully specify typename to avoid bug in old scala compilers
+    // https://issues.scala-lang.org/browse/SI-4402
     printer->Print(
-      "private Builder(BuilderParent parent) {\n"
+                   "private Builder(com.google.protobuf.GeneratedMessage.BuilderParent parent) {\n"
       "  super(parent);\n"
       "  maybeForceBuilderInitialization();\n"
       "}\n",

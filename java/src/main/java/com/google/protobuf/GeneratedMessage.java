@@ -186,7 +186,9 @@ public abstract class GeneratedMessage extends AbstractMessage
    * communicate invalidations back to the parent for use when using nested
    * builders.
    */
-  protected interface BuilderParent {
+  // kevinh changed protected to public to avoid bug in old scala compilers
+  // https://issues.scala-lang.org/browse/SI-4402
+  public interface BuilderParent {
 
     /**
      * A builder becomes dirty whenever a field is modified -- including fields
